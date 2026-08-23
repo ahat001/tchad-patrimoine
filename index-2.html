@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="Zs-w3_-VOkwKRklvdORKsUg0MgDjBw9bEwtRevtVH28" />
+<title>Tchad Patrimoine — تشاد التراث</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Manrope:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{
+  --navy:#0A2A5E;
+  --navy-deep:#071A3D;
+  --night:#050E22;
+  --gold:#F2A900;
+  --gold-bright:#FDC22E;
+  --red:#C8102E;
+  --sand:#FBF6EC;
+  --sand-2:#F3EBDA;
+  --ink:#1C1B19;
+  --ink-soft:#4A473F;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',sans-serif;
+  background:var(--sand);
+  color:var(--ink);
+  transition:background-color .4s ease, color .4s ease;
+}
+.dark body, body.dark{background:var(--night); color:#EDE7D6;}
+.dark .surface{background:#0D1B36; border-color:#1C2C4E;}
+.dark .surface-2{background:#0A162C;}
+.dark .text-soft{color:#B9C2D6;}
+.dark .region-card{background:#0D1B36; border-color:#1C2C4E;}
+.dark .region-card p, .dark .region-card .chef{color:#B9C2D6;}
+.dark #modal .modal-panel{background:#0D1B36; color:#EDE7D6; border-color:#1C2C4E;}
+.dark header{background:rgba(5,14,34,.85); border-color:#1C2C4E;}
+
+h1,h2,h3,.display{font-family:'Fraunces',serif;}
+.lang-ar, .lang-ar h1, .lang-ar h2, .lang-ar h3, .lang-ar p, .lang-ar span, .lang-ar button {font-family:'Amiri',serif;}
+.lang-ar{direction:rtl}
+.lang-fr{direction:ltr}
+
+.eyebrow{
+  font-family:'Manrope',sans-serif;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-size:.72rem;
+}
+
+/* ---------- HEADER ---------- */
+header{
+  backdrop-filter:blur(10px);
+  background:rgba(251,246,236,.85);
+  border-bottom:1px solid rgba(10,42,94,.12);
+  transition:background-color .4s ease, border-color .4s ease;
+}
+
+/* mini flag mark in logo */
+.mini-flag{width:26px;height:18px;border-radius:2px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.35);}
+.mini-flag span{display:block;height:100%;}
+
+/* ---------- HERO ---------- */
+.hero{
+  background:
+    radial-gradient(ellipse at 20% -10%, rgba(242,169,0,.18), transparent 55%),
+    radial-gradient(ellipse at 90% 10%, rgba(200,16,46,.16), transparent 50%),
+    linear-gradient(180deg, var(--navy-deep) 0%, var(--night) 100%);
+  color:#F4EFE1;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.35) 1px, transparent 1px);
+  background-size:46px 46px;
+  opacity:.08;
+  pointer-events:none;
+}
+.hero-title{
+  font-size:clamp(2.1rem, 5vw, 3.6rem);
+  line-height:1.05;
+  font-weight:700;
+  letter-spacing:-.01em;
+}
+.hero-sub{color:#C9D2E6;}
+
+/* waving flag */
+.flagpole-wrap{display:flex; align-items:flex-end; gap:0; filter:drop-shadow(0 18px 30px rgba(0,0,0,.45));}
+.pole{width:8px; border-radius:4px; background:linear-gradient(180deg,#cbb26a,#8a7434); position:relative;}
+.pole::before{content:"";position:absolute; top:-10px; left:-5px; width:18px; height:18px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #ffe9a8, #b8912c);}
+.waving-flag{display:block; width:min(58vw, 320px); height:auto; transform-origin:left center; animation:flagFloat 5.5s ease-in-out infinite;}
+@keyframes flagFloat{
+  0%,100%{transform:skewY(0deg) rotate(0deg);}
+  25%{transform:skewY(-1.1deg) rotate(-.4deg);}
+  50%{transform:skewY(.6deg) rotate(.3deg);}
+  75%{transform:skewY(-.4deg) rotate(-.2deg);}
+}
+
+/* anthem button + equalizer */
+.btn-anthem{
+  background:var(--red); color:#fff; font-weight:700;
+  padding:.85rem 1.6rem; border-radius:999px;
+  display:inline-flex; align-items:center; gap:.6rem;
+  box-shadow:0 10px 24px -8px rgba(200,16,46,.55);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn-anthem:hover{transform:translateY(-2px); box-shadow:0 14px 28px -8px rgba(200,16,46,.65);}
+.eq{display:inline-flex; align-items:flex-end; gap:3px; height:16px;}
+.eq i{display:block; width:3px; background:#fff; border-radius:2px; height:4px; animation:none;}
+.eq.playing i{animation:eqBounce 1s ease-in-out infinite;}
+.eq.playing i:nth-child(2){animation-delay:.15s}
+.eq.playing i:nth-child(3){animation-delay:.3s}
+.eq.playing i:nth-child(4){animation-delay:.45s}
+@keyframes eqBounce{0%,100%{height:4px;}50%{height:15px;}}
+
+.btn-outline{border:2px solid rgba(255,255,255,.35); color:#F4EFE1; transition:all .2s ease;}
+.btn-outline:hover{border-color:var(--gold-bright); background:rgba(242,169,0,.12);}
+
+/* ---------- EMPIRES ---------- */
+.empire-card{
+  border-left:3px solid var(--gold);
+  padding:1.1rem 1.3rem;
+  background:rgba(255,255,255,.03);
+  border-radius:.5rem;
+}
+.dark .empire-card{background:rgba(255,255,255,.02);}
+
+/* ---------- CARTE INTERACTIVE (mosaïque schématique) ---------- */
+.map-grid{
+  display:grid; gap:4px;
+  grid-template-columns:repeat(6, 1fr);
+  grid-template-areas:
+    ".        tibesti  tibesti  enO      enO      enE"
+    ".        tibesti  tibesti  enO      enO      enE"
+    "kanem    borkou   borkou   wadifira wadifira enE"
+    "kanem    borkou   borkou   wadifira wadifira ."
+    "lac      barh     batha    batha    ouaddai  ouaddai"
+    "lac      barh     batha    batha    ouaddai  sila"
+    "hadjer   hadjer   guera    guera    salamat  sila"
+    "ndj      chari    guera    guera    salamat  salamat"
+    "mke      chari    chari    moyenchari moyenchari salamat"
+    "mko      tandjile moyenchari moyenchari moyenchari ."
+    "mko      logoccid mandoul  moyenchari .        ."
+    ".        logorient logorient .       .        .";
+  aspect-ratio:6/9;
+}
+.map-tile{
+  grid-column:span 1; grid-row:span 1;
+  background:linear-gradient(160deg,#fff,#F3EBDA);
+  border:1px solid rgba(10,42,94,.18);
+  border-radius:.35rem;
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  font-size:.62rem; font-weight:700; color:var(--navy); line-height:1.15;
+  padding:2px; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease, background-color .15s;
+}
+.map-tile:hover{transform:scale(1.05); box-shadow:0 8px 16px -6px rgba(10,42,94,.4); background:var(--gold); color:var(--navy); z-index:2; position:relative;}
+.map-tile-sm{font-size:.5rem;}
+.dark .map-tile{background:linear-gradient(160deg,#132244,#0D1B36); border-color:#1C2C4E; color:#EDE7D6;}
+.dark .map-tile:hover{background:var(--gold); color:#0A2A5E;}
+@media (max-width: 480px){ .map-tile{font-size:.5rem;} .map-tile-sm{font-size:.42rem;} }
+.figure-card{background:#fff; border:1px solid rgba(10,42,94,.10); border-radius:1rem; padding:1.4rem;}
+.dark .figure-card{background:#0D1B36; border-color:#1C2C4E;}
+.figure-avatar{
+  width:3rem;height:3rem;border-radius:50%; background:linear-gradient(135deg,var(--navy),var(--navy-deep));
+  color:var(--gold); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Fraunces',serif;
+}
+
+/* ---------- QUIZ (dans le modal) ---------- */
+.quiz-box{margin-top:1.4rem; padding-top:1.2rem; border-top:2px dashed rgba(10,42,94,.15);}
+.quiz-opt{
+  display:block; width:100%; text-align:left; padding:.6rem .9rem; margin-bottom:.5rem;
+  border:1px solid rgba(10,42,94,.2); border-radius:.6rem; background:transparent; cursor:pointer;
+  transition:background-color .15s;
+}
+.quiz-opt:hover{background:rgba(10,42,94,.06);}
+.dark .quiz-opt:hover{background:rgba(255,255,255,.06);}
+.quiz-opt.correct{background:#DCF5E3; border-color:#2E9E52; font-weight:700;}
+.quiz-opt.wrong{background:#FBE0E4; border-color:var(--red);}
+.dark .quiz-opt.correct{background:#12351F;}
+.dark .quiz-opt.wrong{background:#3A1620;}
+.quiz-feedback{font-size:.85rem; font-weight:700; margin-top:.5rem;}
+
+/* ---------- BOUTON CONTRIBUTION PHOTO ---------- */
+
+
+/* ---------- VIDEO PANEL ---------- */
+.video-frame{border:1px solid rgba(10,42,94,.15); border-radius:1.25rem; overflow:hidden; box-shadow:0 30px 60px -25px rgba(10,42,94,.35);}
+.scene-frame{position:relative;}
+.intro-scene{display:block; width:100%; height:auto; max-height:460px;}
+#sunHalo{animation:sunPulse 4s ease-in-out infinite;}
+@keyframes sunPulse{0%,100%{opacity:.75; r:140;}50%{opacity:1; r:150;}}
+#sceneTitle{animation:sceneReveal 1.4s ease forwards .3s;}
+#sceneSub{animation:sceneReveal 1.4s ease forwards .9s;}
+@keyframes sceneReveal{to{opacity:1;}}
+.replay-btn{
+  position:absolute; bottom:.9rem; right:.9rem;
+  background:rgba(5,14,34,.55); color:#F4EFE1; border:1px solid rgba(255,255,255,.25);
+  font-size:.78rem; font-weight:600; padding:.4rem .8rem; border-radius:999px;
+  backdrop-filter:blur(4px); transition:background-color .2s;
+}
+.replay-btn:hover{background:rgba(5,14,34,.8);}
+@media (prefers-reduced-motion: reduce){
+  #sunHalo{animation:none;}
+  #sceneTitle, #sceneSub{animation:none; opacity:1;}
+}
+
+/* ---------- REGION CARDS ---------- */
+.region-card{
+  background:#fff; border:1px solid rgba(10,42,94,.10);
+  border-radius:1rem; overflow:hidden;
+  transition:transform .22s ease, box-shadow .22s ease;
+  display:flex; flex-direction:column;
+}
+.region-card:hover{transform:translateY(-5px); box-shadow:0 22px 40px -18px rgba(10,42,94,.30);}
+.region-idx{
+  font-family:'Fraunces',serif; font-weight:600; font-size:.85rem;
+  color:var(--gold); background:var(--navy);
+  width:2rem;height:2rem;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex:none;
+}
+.region-thumb{position:relative; width:100%; height:11rem; background:linear-gradient(135deg,var(--navy),var(--navy-deep));}
+.region-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.region-thumb .fallback-letter{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:'Fraunces',serif; font-size:3rem; color:rgba(242,169,0,.85);
+}
+.btn-primary{background:var(--navy); color:#fff; transition:background-color .2s;}
+.btn-primary:hover{background:var(--navy-deep);}
+.dark .btn-primary{background:var(--gold); color:#1C1B19;}
+.dark .btn-primary:hover{background:var(--gold-bright);}
+
+/* ---------- MODAL ---------- */
+.modal-overlay{background:rgba(5,14,34,.72); backdrop-filter:blur(6px);}
+.modal-panel{max-height:82vh; overflow-y:auto; border:1px solid rgba(10,42,94,.12);}
+.modal-panel p{margin-bottom:.8rem; line-height:1.75;}
+.modal-panel strong{color:var(--navy);}
+.dark .modal-panel strong{color:var(--gold);}
+
+/* focus visibility */
+a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
+
+@media (prefers-reduced-motion: reduce){
+  .waving-flag, .eq.playing i{animation:none !important;}
+}
+</style>
+</head>
+<body class="lang-fr">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <span class="mini-flag"><span style="background:var(--navy)"></span></span>
+      <div class="leading-tight">
+        <div class="font-bold" style="color:var(--navy); font-family:'Fraunces',serif;">Tchad Patrimoine</div>
+        <div class="text-xs" style="color:var(--red);">تشاد التراث</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <button id="langToggle" class="btn-outline text-sm px-3 py-1.5 rounded-lg font-semibold" style="border-color:var(--navy); color:var(--navy);">
+        <span id="langLabel">FR</span>
+      </button>
+      <button id="themeToggle" class="text-xl leading-none p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition">🌙</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center relative z-10">
+    <div>
+      <p class="eyebrow" style="color:var(--gold-bright);">République du Tchad — Patrimoine national</p>
+      <h1 id="heroTitle" class="hero-title mt-3">Bienvenue au Cœur de l'Afrique</h1>
+      <p id="heroSub" class="hero-sub text-lg mt-4 max-w-md">Découvrez l'histoire complète des 23 régions et des trois grands empires qui ont façonné le Tchad.</p>
+      <div class="flex flex-wrap items-center gap-4 mt-8">
+        <button id="anthemBtn" class="btn-anthem">
+          <span class="eq" id="eq"><i></i><i></i><i></i><i></i></span>
+          <span id="anthemLabel">Écouter La Tchadienne</span>
+        </button>
+        <a href="#video" class="btn-outline px-5 py-3 rounded-full font-semibold text-sm">Voir le film ▾</a>
+      </div>
+      <audio id="anthem" preload="none">
+        <source src="https://commons.wikimedia.org/wiki/Special:FilePath/La_Tchadienne_(instrumental).ogg" type="audio/ogg">
+      </audio>
+    </div>
+    <div class="flex justify-center md:justify-end">
+      <div class="flagpole-wrap">
+        <div class="pole" style="height:190px;"></div>
+        <svg class="waving-flag" viewBox="0 0 300 200" role="img" aria-label="Drapeau du Tchad ondulant">
+          <defs>
+            <filter id="waveFilter" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" numOctaves="2" seed="7" result="turb">
+                <animate attributeName="baseFrequency" values="0.010 0.028;0.020 0.045;0.010 0.028" dur="6s" repeatCount="indefinite"/>
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="turb" scale="16" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
+          <g filter="url(#waveFilter)">
+            <rect x="0" y="0" width="100" height="200" fill="#0A2A5E"/>
+            <rect x="100" y="0" width="100" height="200" fill="#F2A900"/>
+            <rect x="200" y="0" width="100" height="200" fill="#C8102E"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMPIRES -->
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+  <p class="eyebrow" style="color:var(--red);">Trois héritages, un même peuple</p>
+  <h2 id="empiresTitle" class="text-2xl md:text-3xl font-bold mt-2 mb-8" style="color:var(--navy);">Les grands empires précoloniaux</h2>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="empire-card">
+      <div class="text-xs font-bold" style="color:var(--gold);">IXᵉ SIÈCLE</div>
+      <h3 class="font-bold text-lg mt-1" style="font-family:'Fraunces',serif;">Empire du Kanem</h3>
+      <p class="text-sm text-soft mt-2">Fondé par la dynastie Saifawa, capitale Njimi. Son apogée sous Mai Dunama Dibalami étendit son influence jusqu'au Fezzan.</p>
+    </div>
+    <div class="empire-card">
+      <div class="text-xs font-bold" style="color:var(--gold);">1522</div>
+      <h3 class="font-bold text-lg mt-1" style="font-family:'Fraunces',serif;">Royaume du Baguirmi</h3>
+      <p class="text-sm text-soft mt-2">Fondé par Abdallah Birni Besse à Massenya, vassal du Kanem, prospère aux XVIIᵉ–XVIIIᵉ siècles avant de résister à Rabah.</p>
+    </div>
+    <div class="empire-card">
+      <div class="text-xs font-bold" style="color:var(--gold);">1635</div>
+      <h3 class="font-bold text-lg mt-1" style="font-family:'Fraunces',serif;">Sultanat du Ouaddaï</h3>
+      <p class="text-sm text-soft mt-2">Fondé par Abdelkerim Dilmé à Abéché, prospère grâce aux routes caravanières avant la résistance à la colonisation française.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONNALITÉS HISTORIQUES -->
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+  <p class="eyebrow" style="color:var(--red);">Ceux qui ont bâti la nation</p>
+  <h2 id="figuresTitle" class="text-2xl md:text-3xl font-bold mt-2 mb-8" style="color:var(--navy);">Personnalités historiques</h2>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="figure-card">
+      <div class="figure-avatar">MD</div>
+      <h3 class="font-bold text-lg mt-3" style="font-family:'Fraunces',serif;">Mai Dunama Dibalami</h3>
+      <p class="text-xs font-semibold" style="color:var(--gold);">Empire du Kanem, 1210–1248</p>
+      <p class="text-sm text-soft mt-2">Souverain sous lequel l'empire du Kanem connut son apogée territoriale, étendant son influence jusqu'au Fezzan.</p>
+    </div>
+    <div class="figure-card">
+      <div class="figure-avatar">AB</div>
+      <h3 class="font-bold text-lg mt-3" style="font-family:'Fraunces',serif;">Abdallah Birni Besse</h3>
+      <p class="text-xs font-semibold" style="color:var(--gold);">Fondateur du Baguirmi, 1522</p>
+      <p class="text-sm text-soft mt-2">Fonda le royaume du Baguirmi et sa capitale Massenya, qui prospéra pendant plusieurs siècles.</p>
+    </div>
+    <div class="figure-card">
+      <div class="figure-avatar">AD</div>
+      <h3 class="font-bold text-lg mt-3" style="font-family:'Fraunces',serif;">Abdelkerim Dilmé</h3>
+      <p class="text-xs font-semibold" style="color:var(--gold);">Fondateur du Ouaddaï, 1635</p>
+      <p class="text-sm text-soft mt-2">Fonda le sultanat du Ouaddaï autour d'Abéché, bâti sur la prospérité des routes caravanières.</p>
+    </div>
+  </div>
+  <p class="text-xs text-soft mt-6 italic">D'autres figures régionales existent pour chaque province — la liste s'enrichira au fil du temps.</p>
+</section>
+
+<!-- VIDEO -->
+<section id="video" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 scroll-mt-24">
+  <div class="video-frame scene-frame">
+    <svg id="introScene" class="intro-scene" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Lever de soleil sur le Sahel tchadien, avec le drapeau national">
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0A2A5E"/>
+          <stop offset="45%" stop-color="#7A3B4E"/>
+          <stop offset="75%" stop-color="#D97A2E"/>
+          <stop offset="100%" stop-color="#F2A900"/>
+        </linearGradient>
+        <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFE9A8" stop-opacity="1"/>
+          <stop offset="60%" stop-color="#FDC22E" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#FDC22E" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="sceneWave" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" numOctaves="2" seed="7" result="t">
+            <animate attributeName="baseFrequency" values="0.010 0.028;0.020 0.045;0.010 0.028" dur="6s" repeatCount="indefinite"/>
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+
+      <rect x="0" y="0" width="800" height="400" fill="url(#skyGrad)"/>
+      <circle id="sunHalo" cx="400" cy="260" r="140" fill="url(#sunGlow)"/>
+      <circle cx="400" cy="260" r="52" fill="#FFF3D6"/>
+
+      <!-- dunes, en couches -->
+      <path d="M0,330 Q120,290 260,320 T520,310 T800,330 V400 H0 Z" fill="#0F1A2E" opacity=".9"/>
+      <path d="M0,360 Q160,320 340,350 T800,355 V400 H0 Z" fill="#070E1C"/>
+
+      <!-- petit mât + drapeau -->
+      <g transform="translate(560,150)">
+        <rect x="0" y="0" width="4" height="120" fill="#8a7434"/>
+        <g filter="url(#sceneWave)">
+          <rect x="4" y="4" width="26" height="16" fill="#0A2A5E"/>
+          <rect x="30" y="4" width="26" height="16" fill="#F2A900"/>
+          <rect x="56" y="4" width="26" height="16" fill="#C8102E"/>
+        </g>
+      </g>
+
+      <text id="sceneTitle" x="400" y="120" text-anchor="middle" font-family="Fraunces, serif" font-weight="700" font-size="46" fill="#F4EFE1" opacity="0">République du Tchad</text>
+      <text id="sceneSub" x="400" y="152" text-anchor="middle" font-family="Manrope, sans-serif" font-size="16" letter-spacing="3" fill="#F2A900" opacity="0">UNITÉ · TRAVAIL · PROGRÈS</text>
+    </svg>
+    <button id="replayIntro" class="replay-btn" aria-label="Rejouer l'introduction">↻ Rejouer</button>
+  </div>
+</section>
+
+<!-- CARTE INTERACTIVE -->
+<section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <p class="eyebrow text-center" style="color:var(--red);">Clique sur une zone</p>
+  <h2 id="mapTitle" class="text-3xl font-bold mb-3 text-center" style="color:var(--navy);">Carte interactive du Tchad</h2>
+  <p id="mapNote" class="text-center text-sm text-soft mb-8 max-w-xl mx-auto">Carte schématique (agencement approximatif, pas à l'échelle) — clique sur une région pour lire son histoire.</p>
+  <div class="map-grid">
+    <div class="map-tile" style="grid-area:tibesti;" data-region="Tibesti">Tibesti</div>
+    <div class="map-tile" style="grid-area:enO;" data-region="Ennedi Ouest">Ennedi Ouest</div>
+    <div class="map-tile" style="grid-area:enE;" data-region="Ennedi Est">Ennedi Est</div>
+    <div class="map-tile" style="grid-area:borkou;" data-region="Borkou">Borkou</div>
+    <div class="map-tile" style="grid-area:wadifira;" data-region="Wadi Fira">Wadi Fira</div>
+    <div class="map-tile" style="grid-area:kanem;" data-region="Kanem">Kanem</div>
+    <div class="map-tile" style="grid-area:barh;" data-region="Barh El Gazel">Barh El Gazel</div>
+    <div class="map-tile" style="grid-area:batha;" data-region="Batha">Batha</div>
+    <div class="map-tile" style="grid-area:ouaddai;" data-region="Ouaddaï">Ouaddaï</div>
+    <div class="map-tile" style="grid-area:lac;" data-region="Lac">Lac</div>
+    <div class="map-tile" style="grid-area:hadjer;" data-region="Hadjer-Lamis">Hadjer-Lamis</div>
+    <div class="map-tile" style="grid-area:sila;" data-region="Sila">Sila</div>
+    <div class="map-tile map-tile-sm" style="grid-area:ndj;" data-region="N'Djamena">N'Djamena</div>
+    <div class="map-tile" style="grid-area:chari;" data-region="Chari-Baguirmi">Chari-Baguirmi</div>
+    <div class="map-tile" style="grid-area:guera;" data-region="Guéra">Guéra</div>
+    <div class="map-tile" style="grid-area:salamat;" data-region="Salamat">Salamat</div>
+    <div class="map-tile" style="grid-area:mke;" data-region="Mayo-Kebbi Est">Mayo-Kebbi Est</div>
+    <div class="map-tile" style="grid-area:tandjile;" data-region="Tandjilé">Tandjilé</div>
+    <div class="map-tile" style="grid-area:moyenchari;" data-region="Moyen-Chari">Moyen-Chari</div>
+    <div class="map-tile" style="grid-area:mko;" data-region="Mayo-Kebbi Ouest">Mayo-Kebbi Ouest</div>
+    <div class="map-tile" style="grid-area:logoccid;" data-region="Logone Occidental">Logone Occidental</div>
+    <div class="map-tile" style="grid-area:mandoul;" data-region="Mandoul">Mandoul</div>
+    <div class="map-tile" style="grid-area:logorient;" data-region="Logone Oriental">Logone Oriental</div>
+  </div>
+</section>
+
+<!-- REGIONS -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <p class="eyebrow text-center" style="color:var(--red);">23 régions, une nation</p>
+  <h2 id="regionsTitle" class="text-3xl font-bold mb-10 text-center" style="color:var(--navy);">Nos 23 Régions</h2>
+  <div id="regionsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-overlay" onclick="if(event.target===this) closeModal()">
+  <div class="modal-panel bg-white rounded-2xl max-w-3xl w-full shadow-2xl relative">
+    <button onclick="closeModal()" aria-label="Fermer" class="absolute top-3 right-4 text-3xl text-gray-500 hover:text-gray-900 dark:hover:text-white">&times;</button>
+    <div id="modalBody" class="p-7"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 border-t py-8 text-center text-sm text-soft" style="border-color:rgba(10,42,94,.12);">
+  <p>© 2026 Tchad Patrimoine — Réalisé par AHMAT HASSANE ABDRAMANE</p>
+</footer>
+
+<script>
+(function() {
+  // ---------- DONNÉES RÉGIONS ----------
+  const regions = [
+    { id:1, nom:"Batha", ar:"باتا", chef:"Ati" },
+    { id:2, nom:"Chari-Baguirmi", ar:"شاري باقرمي", chef:"Massenya" },
+    { id:3, nom:"Hadjer-Lamis", ar:"حجر لميس", chef:"Massakory" },
+    { id:4, nom:"Wadi Fira", ar:"وادي فيرا", chef:"Biltine" },
+    { id:5, nom:"Barh El Gazel", ar:"بحر الغزال", chef:"Moussoro" },
+    { id:6, nom:"Borkou", ar:"بوركو", chef:"Faya-Largeau" },
+    { id:7, nom:"Ennedi Est", ar:"إنيدي الشرقي", chef:"Amdjarass" },
+    { id:8, nom:"Ennedi Ouest", ar:"إنيدي الغربي", chef:"Fada" },
+    { id:9, nom:"Guéra", ar:"قيرا", chef:"Mongo" },
+    { id:10, nom:"Kanem", ar:"كانم", chef:"Mao" },
+    { id:11, nom:"Lac", ar:"البحيرة", chef:"Bol" },
+    { id:12, nom:"Logone Occidental", ar:"لوقون الغربي", chef:"Moundou" },
+    { id:13, nom:"Logone Oriental", ar:"لوقون الشرقي", chef:"Doba" },
+    { id:14, nom:"Mandoul", ar:"ماندول", chef:"Koumra" },
+    { id:15, nom:"Mayo-Kebbi Est", ar:"مايو كيبي الشرقي", chef:"Bongor" },
+    { id:16, nom:"Mayo-Kebbi Ouest", ar:"مايو كيبي الغربي", chef:"Pala" },
+    { id:17, nom:"Moyen-Chari", ar:"الشاري الأوسط", chef:"Sarh" },
+    { id:18, nom:"N'Djamena", ar:"انجامينا", chef:"N'Djamena" },
+    { id:19, nom:"Ouaddaï", ar:"وداي", chef:"Abéché" },
+    { id:20, nom:"Salamat", ar:"سلامات", chef:"Am Timan" },
+    { id:21, nom:"Sila", ar:"سيلا", chef:"Goz Beïda" },
+    { id:22, nom:"Tandjilé", ar:"تانجيلي", chef:"Laï" },
+    { id:23, nom:"Tibesti", ar:"تبستي", chef:"Bardaï" }
+  ];
+
+  // ---------- GÉNÉRATEUR D'HISTOIRE COMPLÈTE ----------
+  function getFullHistory(r) {
+    const nom = r.nom, chef = r.chef;
+    let empire = "";
+    if (nom === "Kanem") {
+      empire = `<strong>Empire du Kanem</strong> : Fondé au 9ème siècle par la dynastie Saifawa, avec pour capitale Njimi. Le roi Mai Dunama Dibalami (1210-1248) étendit l'empire jusqu'au Fezzan. L'islamisation débuta au 11ème siècle sous Mai Hummay. L'empire s'effondra vers 1380 à cause des guerres, de la sécheresse et des attaques des Bulala. `;
+    } else if (nom === "Ouaddaï") {
+      empire = `<strong>Royaume du Ouaddaï</strong> : Fondé vers 1635 par Abdelkerim Dilmé, avec Abéché pour capitale. Il prospéra grâce au commerce du sel et des esclaves. Résistance héroïque face à Rabah puis aux Français qui prirent la ville en 1909. `;
+    } else if (nom === "Chari-Baguirmi") {
+      empire = `<strong>Royaume du Baguirmi</strong> : Fondé en 1522 par Abdallah Birni Besse, capitale Massenya. Vassal du Kanem, il connut son apogée aux 17-18èmes siècles. Attaqué par Rabah en 1893, il devint protectorat français en 1897. `;
+    }
+    return `
+      <h3 class="text-2xl font-bold mb-3" style="color:var(--navy); font-family:'Fraunces',serif;">${nom} (${r.ar}) — Chef-lieu : ${chef}</h3>
+      <p><strong>Fondation et peuples autochtones :</strong> La région de ${nom} est habitée depuis des temps immémoriaux par des communautés agro-pastorales. Les premiers habitants étaient des chasseurs-cueilleurs, puis des groupes sédentaires se sont organisés en chefferies.</p>
+      <p><strong>Période des empires :</strong> ${empire}Cette région a été un carrefour d'échanges entre le Sahel et la forêt. Les routes caravanières traversaient ${nom}, apportant prospérité et diversité culturelle.</p>
+      <p><strong>Période coloniale (1890-1960) :</strong> Les troupes françaises ont soumis la région après de violents combats. L'administration coloniale a instauré un système de chefferies et exploité les ressources (coton, gomme arabique). Des révoltes locales ont éclaté, notamment dans les années 1930.</p>
+      <p><strong>Indépendance 1960 :</strong> Le Tchad accède à la souveraineté, et ${nom} devient une région administrative. Les premiers gouvernements tchadiens ont tenté d'intégrer les élites locales.</p>
+      <p><strong>Événements majeurs du 20ème siècle :</strong> Les sécheresses des années 1970-1980 ont frappé durement ${nom}, provoquant des déplacements de population. La guerre civile (1965-1990) a également affecté la région.</p>
+      <p><strong>Réformes et décentralisation (2000-2020) :</strong> La région a bénéficié de programmes de développement, de construction d'infrastructures et d'écoles. La décentralisation a renforcé le pouvoir local.</p>
+      <p><strong>Situation aujourd'hui (2026) :</strong> ${nom} est une région dynamique, avec une économie basée sur l'agriculture, l'élevage et le commerce transfrontalier. Les traditions culturelles sont vivaces, et la jeunesse s'investit dans l'entrepreneuriat.</p>
+    `;
+  }
+
+  function getSummary(nom) {
+    return `La région de ${nom} est un territoire clé du Tchad, riche en histoire et en diversité culturelle. Ses paysages et ses traditions en font une porte d'entrée vers le patrimoine tchadien.`;
+  }
+
+  // ---------- RENDU DES CARTES ----------
+  const grid = document.getElementById('regionsGrid');
+  regions.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'region-card';
+    card.setAttribute('data-region', r.nom);
+
+    const thumb = document.createElement('div');
+    thumb.className = 'region-thumb';
+    const img = document.createElement('img');
+    // Photo par défaut (à remplacer par une vraie photo de la région : mets un fichier
+    // dans /images/ nommé comme la région et change ce src, ex: images/kanem.jpg)
+    img.src = `https://picsum.photos/seed/tchad-${encodeURIComponent(r.nom)}/700/500`;
+    img.alt = r.nom;
+    img.loading = 'lazy';
+    img.onerror = function() {
+      this.remove();
+      const fb = document.createElement('div');
+      fb.className = 'fallback-letter';
+      fb.textContent = r.nom.charAt(0);
+      thumb.appendChild(fb);
+    };
+    thumb.appendChild(img);
+    card.appendChild(thumb);
+
+    const body = document.createElement('div');
+    body.className = 'p-5 flex flex-col flex-grow';
+
+    const header = document.createElement('div');
+    header.className = 'flex items-center gap-3 mb-2';
+    header.innerHTML = `<span class="region-idx">${r.id}</span><h3 class="text-lg font-bold" style="color:var(--navy); font-family:'Fraunces',serif;">${r.nom}</h3><span class="text-sm text-gray-500 ms-auto" dir="rtl">${r.ar}</span>`;
+    body.appendChild(header);
+
+    const chefEl = document.createElement('p');
+    chefEl.className = 'chef text-sm text-gray-600 mb-2 font-semibold';
+    chefEl.textContent = `Chef-lieu : ${r.chef}`;
+    body.appendChild(chefEl);
+
+    const summary = document.createElement('p');
+    summary.className = 'text-sm text-gray-700 mb-4 leading-relaxed flex-grow';
+    summary.textContent = getSummary(r.nom);
+    body.appendChild(summary);
+
+    const btn = document.createElement('button');
+    btn.className = 'btn-primary px-4 py-2 rounded-full text-sm font-semibold self-start shadow hover:shadow-md transition mt-auto';
+    btn.textContent = '📖 Lire l\'histoire complète';
+    btn.onclick = (e) => { e.stopPropagation(); openModal(r); };
+    body.appendChild(btn);
+
+    card.appendChild(body);
+    grid.appendChild(card);
+    card.addEventListener('click', () => openModal(r));
+  });
+
+  // ---------- CARTE INTERACTIVE ----------
+  document.querySelectorAll('.map-tile').forEach(tile => {
+    tile.addEventListener('click', () => {
+      const name = tile.getAttribute('data-region');
+      const region = regions.find(r => r.nom === name);
+      if (region) openModal(region);
+    });
+  });
+
+  // ---------- QUIZ ----------
+  function getQuizHtml(region) {
+    const others = regions.filter(x => x.id !== region.id);
+    const shuffled = others.sort(() => Math.random() - .5).slice(0, 2).map(x => x.chef);
+    const options = [region.chef, ...shuffled].sort(() => Math.random() - .5);
+    const optsHtml = options.map(opt =>
+      `<button class="quiz-opt" data-correct="${opt === region.chef}" onclick="window.answerQuiz(this)">${opt}</button>`
+    ).join('');
+    return `
+      <div class="quiz-box">
+        <p class="font-bold text-sm mb-3" style="color:var(--navy);">🧠 Petit quiz : quel est le chef-lieu de ${region.nom} ?</p>
+        <div id="quizOptions">${optsHtml}</div>
+        <p id="quizFeedback" class="quiz-feedback"></p>
+      </div>`;
+  }
+  window.answerQuiz = function(btnEl) {
+    const container = document.getElementById('quizOptions');
+    const feedback = document.getElementById('quizFeedback');
+    const correct = btnEl.getAttribute('data-correct') === 'true';
+    container.querySelectorAll('.quiz-opt').forEach(o => o.disabled = true);
+    if (correct) {
+      btnEl.classList.add('correct');
+      feedback.textContent = '✅ Bonne réponse !';
+      feedback.style.color = '#2E9E52';
+    } else {
+      btnEl.classList.add('wrong');
+      feedback.textContent = '❌ Pas tout à fait — la bonne réponse est surlignée.';
+      feedback.style.color = 'var(--red)';
+      container.querySelectorAll('.quiz-opt').forEach(o => { if (o.getAttribute('data-correct') === 'true') o.classList.add('correct'); });
+    }
+  };
+
+  // ---------- MODAL ----------
+  const modal = document.getElementById('modal');
+  const modalBody = document.getElementById('modalBody');
+
+  function openModal(region) {
+    modalBody.innerHTML = getFullHistory(region) + getQuizHtml(region);
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+  window.openModal = openModal;
+  window.closeModal = function() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  // ---------- SCÈNE INTRO (rejouer l'animation du titre) ----------
+  const replayBtn = document.getElementById('replayIntro');
+  const sceneTitle = document.getElementById('sceneTitle');
+  const sceneSub = document.getElementById('sceneSub');
+  replayBtn.addEventListener('click', () => {
+    [sceneTitle, sceneSub].forEach(el => {
+      el.style.animation = 'none';
+      void el.offsetWidth; // force le redémarrage de l'animation
+      el.style.animation = '';
+    });
+    sceneTitle.style.animation = 'sceneReveal 1.4s ease forwards .1s';
+    sceneSub.style.animation = 'sceneReveal 1.4s ease forwards .7s';
+  });
+
+  // ---------- HYMNE ----------
+  const anthem = document.getElementById('anthem');
+  const anthemBtn = document.getElementById('anthemBtn');
+  const eq = document.getElementById('eq');
+  anthemBtn.addEventListener('click', () => {
+    if (anthem.paused) {
+      anthem.play().catch(() => {
+        alert("Impossible de lire l'hymne automatiquement (le fichier audio n'a pas pu être chargé). Vérifie ta connexion, ou remplace la source audio dans le code par un fichier mp3 que tu héberges toi-même.");
+      });
+    } else {
+      anthem.pause();
+    }
+  });
+  anthem.addEventListener('play', () => eq.classList.add('playing'));
+  anthem.addEventListener('pause', () => eq.classList.remove('playing'));
+  anthem.addEventListener('ended', () => eq.classList.remove('playing'));
+
+  // ---------- LANGUE ----------
+  const langToggle = document.getElementById('langToggle');
+  const langLabel = document.getElementById('langLabel');
+  let currentLang = localStorage.getItem('tchadLang') || 'fr';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('tchadLang', lang);
+    langLabel.textContent = lang.toUpperCase();
+    const heroTitle = document.getElementById('heroTitle');
+    const heroSub = document.getElementById('heroSub');
+    const anthemLabel = document.getElementById('anthemLabel');
+    const regionsTitle = document.getElementById('regionsTitle');
+    const empiresTitle = document.getElementById('empiresTitle');
+    if (lang === 'ar') {
+      document.documentElement.classList.add('lang-ar');
+      document.documentElement.classList.remove('lang-fr');
+      heroTitle.textContent = 'مرحبا بكم في قلب أفريقيا';
+      heroSub.textContent = 'اكتشف التاريخ الكامل للمناطق الـ23 والإمبراطوريات الثلاث الكبرى في تشاد';
+      anthemLabel.textContent = 'استمع إلى نشيد تشاد';
+      regionsTitle.textContent = 'مناطقنا الـ23';
+      empiresTitle.textContent = 'الإمبراطوريات الكبرى ما قبل الاستعمار';
+      document.getElementById('figuresTitle').textContent = 'شخصيات تاريخية';
+      document.getElementById('mapTitle').textContent = 'خريطة تشاد التفاعلية';
+      document.querySelectorAll('.region-card h3').forEach((h3, idx) => {
+        const d = regions[idx];
+        if (d) h3.textContent = d.ar;
+      });
+    } else {
+      document.documentElement.classList.add('lang-fr');
+      document.documentElement.classList.remove('lang-ar');
+      heroTitle.textContent = "Bienvenue au Cœur de l'Afrique";
+      heroSub.textContent = "Découvrez l'histoire complète des 23 régions et des trois grands empires qui ont façonné le Tchad.";
+      anthemLabel.textContent = 'Écouter La Tchadienne';
+      regionsTitle.textContent = 'Nos 23 Régions';
+      empiresTitle.textContent = 'Les grands empires précoloniaux';
+      document.getElementById('figuresTitle').textContent = 'Personnalités historiques';
+      document.getElementById('mapTitle').textContent = 'Carte interactive du Tchad';
+      document.querySelectorAll('.region-card h3').forEach((h3, idx) => {
+        const d = regions[idx];
+        if (d) h3.textContent = d.nom;
+      });
+    }
+  }
+  langToggle.addEventListener('click', () => applyLang(currentLang === 'fr' ? 'ar' : 'fr'));
+
+  // ---------- THÈME ----------
+  const themeToggle = document.getElementById('themeToggle');
+  let currentTheme = localStorage.getItem('tchadTheme') || 'light';
+  function applyTheme(theme) {
+    currentTheme = theme;
+    localStorage.setItem('tchadTheme', theme);
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    document.body.classList.toggle('dark', theme === 'dark');
+    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+  themeToggle.addEventListener('click', () => applyTheme(currentTheme === 'light' ? 'dark' : 'light'));
+
+  applyTheme(currentTheme);
+  applyLang(currentLang);
+
+  // ---------- MODE HORS-LIGNE (cache la page pour les connexions instables) ----------
+  if ('serviceWorker' in navigator) {
+    try {
+      const swCode = `
+        self.addEventListener('install', e => self.skipWaiting());
+        self.addEventListener('activate', e => self.clients.claim());
+        self.addEventListener('fetch', e => {
+          e.respondWith(
+            caches.open('tchad-patrimoine-v1').then(cache =>
+              cache.match(e.request).then(cached => {
+                const fetchPromise = fetch(e.request).then(res => {
+                  cache.put(e.request, res.clone());
+                  return res;
+                }).catch(() => cached);
+                return cached || fetchPromise;
+              })
+            )
+          );
+        });
+      `;
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      navigator.serviceWorker.register(URL.createObjectURL(blob));
+    } catch (e) { /* mode hors-ligne non disponible, pas grave */ }
+  }
+})();
+</script>
+</body>
+</html>
