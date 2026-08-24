@@ -159,7 +159,15 @@ header{
   font-size:.62rem; font-weight:700; color:var(--navy); line-height:1.15;
   padding:2px; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease, background-color .15s;
 }
-.map-tile:hover{transform:scale(1.05); box-shadow:0 8px 16px -6px rgba(10,42,94,.4); background:var(--gold); color:var(--navy); z-index:2; position:relative;}
+    .map-tile:hover{
+      transform: translateY(-5px) rotate(-1deg); /* effet profondeur + inclinaison */
+      box-shadow: 0 15px 30px -8px rgba(10,42,94,.5); /* ombre portée */
+      background:var(--gold); 
+      color:var(--navy); 
+      z-index:2; 
+      position:relative;
+      border:2px solid var(--red);
+    }
 .map-tile-sm{font-size:.5rem;}
 .dark .map-tile{background:linear-gradient(160deg,#132244,#0D1B36); border-color:#1C2C4E; color:#EDE7D6;}
 .dark .map-tile:hover{background:var(--gold); color:#0A2A5E;}
