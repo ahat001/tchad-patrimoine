@@ -135,23 +135,9 @@ header{
 .map-grid{
   display:grid; gap:4px;
   grid-template-columns:repeat(6, 1fr);
-  grid-template-areas:
-    ".        tibesti  tibesti  enO      enO      enE"
-    ".        tibesti  tibesti  enO      enO      enE"
-    "kanem    borkou   borkou   wadifira wadifira enE"
-    "kanem    borkou   borkou   wadifira wadifira ."
-    "lac      barh     batha    batha    ouaddai  ouaddai"
-    "lac      barh     batha    batha    ouaddai  sila"
-    "hadjer   hadjer   guera    guera    salamat  sila"
-    "ndj      chari    guera    guera    salamat  salamat"
-    "mke      chari    chari    moyenchari moyenchari salamat"
-    "mko      tandjile moyenchari moyenchari moyenchari ."
-    "mko      logoccid mandoul  moyenchari .        ."
-    ".        logorient logorient .       .        .";
-  aspect-ratio:6/9;
+  grid-auto-rows:minmax(46px, auto);
 }
 .map-tile{
-  grid-column:span 1; grid-row:span 1;
   background:linear-gradient(160deg,#fff,#F3EBDA);
   border:1px solid rgba(10,42,94,.18);
   border-radius:.35rem;
@@ -159,15 +145,7 @@ header{
   font-size:.62rem; font-weight:700; color:var(--navy); line-height:1.15;
   padding:2px; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease, background-color .15s;
 }
-    .map-tile:hover{
-      transform: translateY(-5px) rotate(-1deg); /* effet profondeur + inclinaison */
-      box-shadow: 0 15px 30px -8px rgba(10,42,94,.5); /* ombre portée */
-      background:var(--gold); 
-      color:var(--navy); 
-      z-index:2; 
-      position:relative;
-      border:2px solid var(--red);
-    }
+.map-tile:hover{transform:scale(1.05); box-shadow:0 8px 16px -6px rgba(10,42,94,.4); background:var(--gold); color:var(--navy); z-index:2; position:relative;}
 .map-tile-sm{font-size:.5rem;}
 .dark .map-tile{background:linear-gradient(160deg,#132244,#0D1B36); border-color:#1C2C4E; color:#EDE7D6;}
 .dark .map-tile:hover{background:var(--gold); color:#0A2A5E;}
@@ -426,29 +404,29 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
   <h2 id="mapTitle" class="text-3xl font-bold mb-3 text-center" style="color:var(--navy);">Carte interactive du Tchad</h2>
   <p id="mapNote" class="text-center text-sm text-soft mb-8 max-w-xl mx-auto">Carte schématique (agencement approximatif, pas à l'échelle) — clique sur une région pour lire son histoire.</p>
   <div class="map-grid">
-    <div class="map-tile" style="grid-area:tibesti;" data-region="Tibesti">Tibesti</div>
-    <div class="map-tile" style="grid-area:enO;" data-region="Ennedi Ouest">Ennedi Ouest</div>
-    <div class="map-tile" style="grid-area:enE;" data-region="Ennedi Est">Ennedi Est</div>
-    <div class="map-tile" style="grid-area:borkou;" data-region="Borkou">Borkou</div>
-    <div class="map-tile" style="grid-area:wadifira;" data-region="Wadi Fira">Wadi Fira</div>
-    <div class="map-tile" style="grid-area:kanem;" data-region="Kanem">Kanem</div>
-    <div class="map-tile" style="grid-area:barh;" data-region="Barh El Gazel">Barh El Gazel</div>
-    <div class="map-tile" style="grid-area:batha;" data-region="Batha">Batha</div>
-    <div class="map-tile" style="grid-area:ouaddai;" data-region="Ouaddaï">Ouaddaï</div>
-    <div class="map-tile" style="grid-area:lac;" data-region="Lac">Lac</div>
-    <div class="map-tile" style="grid-area:hadjer;" data-region="Hadjer-Lamis">Hadjer-Lamis</div>
-    <div class="map-tile" style="grid-area:sila;" data-region="Sila">Sila</div>
-    <div class="map-tile map-tile-sm" style="grid-area:ndj;" data-region="N'Djamena">N'Djamena</div>
-    <div class="map-tile" style="grid-area:chari;" data-region="Chari-Baguirmi">Chari-Baguirmi</div>
-    <div class="map-tile" style="grid-area:guera;" data-region="Guéra">Guéra</div>
-    <div class="map-tile" style="grid-area:salamat;" data-region="Salamat">Salamat</div>
-    <div class="map-tile" style="grid-area:mke;" data-region="Mayo-Kebbi Est">Mayo-Kebbi Est</div>
-    <div class="map-tile" style="grid-area:tandjile;" data-region="Tandjilé">Tandjilé</div>
-    <div class="map-tile" style="grid-area:moyenchari;" data-region="Moyen-Chari">Moyen-Chari</div>
-    <div class="map-tile" style="grid-area:mko;" data-region="Mayo-Kebbi Ouest">Mayo-Kebbi Ouest</div>
-    <div class="map-tile" style="grid-area:logoccid;" data-region="Logone Occidental">Logone Occidental</div>
-    <div class="map-tile" style="grid-area:mandoul;" data-region="Mandoul">Mandoul</div>
-    <div class="map-tile" style="grid-area:logorient;" data-region="Logone Oriental">Logone Oriental</div>
+    <div class="map-tile" style="grid-column:2; grid-row:1;" data-region="Tibesti">Tibesti</div>
+    <div class="map-tile" style="grid-column:4; grid-row:1;" data-region="Ennedi Ouest">Ennedi Ouest</div>
+    <div class="map-tile" style="grid-column:5; grid-row:1;" data-region="Ennedi Est">Ennedi Est</div>
+    <div class="map-tile" style="grid-column:1; grid-row:2;" data-region="Kanem">Kanem</div>
+    <div class="map-tile" style="grid-column:2 / span 2; grid-row:2;" data-region="Borkou">Borkou</div>
+    <div class="map-tile" style="grid-column:4; grid-row:2;" data-region="Wadi Fira">Wadi Fira</div>
+    <div class="map-tile" style="grid-column:1; grid-row:3;" data-region="Lac">Lac</div>
+    <div class="map-tile" style="grid-column:2; grid-row:3;" data-region="Barh El Gazel">Barh El Gazel</div>
+    <div class="map-tile" style="grid-column:3; grid-row:3;" data-region="Batha">Batha</div>
+    <div class="map-tile" style="grid-column:4; grid-row:3;" data-region="Ouaddaï">Ouaddaï</div>
+    <div class="map-tile" style="grid-column:5; grid-row:3;" data-region="Sila">Sila</div>
+    <div class="map-tile" style="grid-column:1; grid-row:4;" data-region="Hadjer-Lamis">Hadjer-Lamis</div>
+    <div class="map-tile" style="grid-column:3; grid-row:4;" data-region="Guéra">Guéra</div>
+    <div class="map-tile" style="grid-column:5; grid-row:4;" data-region="Salamat">Salamat</div>
+    <div class="map-tile map-tile-sm" style="grid-column:1; grid-row:5;" data-region="N'Djamena">N'Djamena</div>
+    <div class="map-tile" style="grid-column:2; grid-row:5;" data-region="Chari-Baguirmi">Chari-Baguirmi</div>
+    <div class="map-tile" style="grid-column:1; grid-row:6;" data-region="Mayo-Kebbi Est">Mayo-Kebbi Est</div>
+    <div class="map-tile" style="grid-column:2; grid-row:6;" data-region="Tandjilé">Tandjilé</div>
+    <div class="map-tile" style="grid-column:3; grid-row:6;" data-region="Moyen-Chari">Moyen-Chari</div>
+    <div class="map-tile" style="grid-column:1; grid-row:7;" data-region="Mayo-Kebbi Ouest">Mayo-Kebbi Ouest</div>
+    <div class="map-tile" style="grid-column:2; grid-row:7;" data-region="Logone Occidental">Logone Occidental</div>
+    <div class="map-tile" style="grid-column:3; grid-row:7;" data-region="Mandoul">Mandoul</div>
+    <div class="map-tile" style="grid-column:2; grid-row:8;" data-region="Logone Oriental">Logone Oriental</div>
   </div>
 </section>
 
