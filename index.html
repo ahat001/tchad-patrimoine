@@ -156,6 +156,14 @@ header{
 @media (max-width: 480px){ .map-tile{font-size:.5rem;} .map-tile-sm{font-size:.42rem;} }
 .figure-card{background:#fff; border:1px solid rgba(10,42,94,.10); border-radius:1rem; padding:1.4rem;}
 .dark .figure-card{background:#0D1B36; border-color:#1C2C4E;}
+
+/* ---------- FAITS "LE SAVIEZ-VOUS" ---------- */
+.fact-card{
+  background:#fff; border:1px solid rgba(10,42,94,.10); border-radius:.9rem;
+  padding:1.1rem 1.3rem; font-size:.9rem; line-height:1.6; color:var(--ink-soft);
+  border-left:3px solid var(--gold);
+}
+.dark .fact-card{background:#0D1B36; border-color:#1C2C4E; color:#B9C2D6;}
 .figure-avatar{
   width:3rem;height:3rem;border-radius:50%; background:linear-gradient(135deg,var(--navy),var(--navy-deep));
   color:var(--gold); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Fraunces',serif;
@@ -258,6 +266,7 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
       <button id="langToggle" class="btn-outline text-sm px-3 py-1.5 rounded-lg font-semibold" style="border-color:var(--navy); color:var(--navy);">
         <span id="langLabel">FR</span>
       </button>
+      <button id="shareSiteBtn" class="text-xl leading-none p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition" aria-label="Partager le site">📤</button>
       <button id="themeToggle" class="text-xl leading-none p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition">🌙</button>
     </div>
   </div>
@@ -435,11 +444,22 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
   </div>
 </section>
 
+<!-- LE SAVIEZ-VOUS -->
+<section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+  <p class="eyebrow text-center" style="color:var(--red);">Anecdotes</p>
+  <h2 id="factsTitle" class="text-2xl md:text-3xl font-bold mb-8 text-center" style="color:var(--navy);">Le saviez-vous ?</h2>
+  <div id="factsGrid" class="grid md:grid-cols-2 gap-4"></div>
+</section>
+
 <!-- REGIONS -->
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
   <p class="eyebrow text-center" style="color:var(--red);">23 régions, une nation</p>
-  <h2 id="regionsTitle" class="text-3xl font-bold mb-10 text-center" style="color:var(--navy);">Nos 23 Régions</h2>
+  <h2 id="regionsTitle" class="text-3xl font-bold mb-6 text-center" style="color:var(--navy);">Nos 23 Régions</h2>
+  <div class="max-w-md mx-auto mb-10">
+    <input id="regionSearch" type="text" placeholder="🔍 Rechercher une région..." class="w-full px-4 py-3 rounded-full border text-sm" style="border-color:rgba(10,42,94,.25);">
+  </div>
   <div id="regionsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  <p id="noResults" class="text-center text-soft hidden mt-6">Aucune région ne correspond à ta recherche.</p>
 </section>
 
 <!-- MODAL -->
@@ -452,11 +472,27 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
 
 <!-- FOOTER -->
 <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 border-t py-8 text-center text-sm text-soft" style="border-color:rgba(10,42,94,.12);">
-  <p>© 2026 Tchad Patrimoine — Réalisé par AHMAT HASSANE ABDRAMANE</p>
+  <p class="mb-2">© 2026 Tchad Patrimoine — Réalisé par AHMAT HASSANE ABDRAMANE</p>
+  <p class="mb-3" id="lastUpdated">Dernière mise à jour : 27 août 2026</p>
+  <div class="flex justify-center">
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=tchad-patrimoine-235.vercel.app" alt="compteur de visites" style="height:20px;">
+  </div>
 </footer>
 
 <script>
 (function() {
+  const SITE_URL = 'https://tchad-patrimoine-235.vercel.app';
+
+  // ---------- LE SAVIEZ-VOUS ----------
+  const facts = [
+    "Le lac Tchad, qui a donné son nom au pays, s'étendait autrefois sur une surface bien plus grande qu'aujourd'hui et continue de rétrécir depuis plusieurs décennies.",
+    "N'Djamena, la capitale, est située au confluent des fleuves Chari et Logone.",
+    "Le Toumaï, l'un des plus anciens fossiles d'hominidé connus (environ 7 millions d'années), a été découvert dans le désert du Djourab, au Tchad.",
+    "Le massif du Tibesti abrite l'Emi Koussi, un volcan qui est le point culminant du Tchad et du Sahara.",
+    "Le Tchad compte plus de 200 langues et groupes ethniques différents, reflet d'une grande diversité culturelle.",
+    "Le parc national de Zakouma, dans le sud-est, est réputé pour avoir permis le retour spectaculaire des populations d'éléphants grâce aux efforts de protection."
+  ];
+
   // ---------- DONNÉES RÉGIONS ----------
   const regions = [
     { id:1, nom:"Batha", ar:"باتا", chef:"Ati" },
@@ -511,6 +547,15 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
     return `La région de ${nom} est un territoire clé du Tchad, riche en histoire et en diversité culturelle. Ses paysages et ses traditions en font une porte d'entrée vers le patrimoine tchadien.`;
   }
 
+  // ---------- RENDU DES FAITS ----------
+  const factsGrid = document.getElementById('factsGrid');
+  facts.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'fact-card';
+    card.textContent = f;
+    factsGrid.appendChild(card);
+  });
+
   // ---------- RENDU DES CARTES ----------
   const grid = document.getElementById('regionsGrid');
   regions.forEach(r => {
@@ -554,15 +599,55 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
     summary.textContent = getSummary(r.nom);
     body.appendChild(summary);
 
+    const btnRow = document.createElement('div');
+    btnRow.className = 'flex items-center gap-2 mt-auto flex-wrap';
+
     const btn = document.createElement('button');
-    btn.className = 'btn-primary px-4 py-2 rounded-full text-sm font-semibold self-start shadow hover:shadow-md transition mt-auto';
+    btn.className = 'btn-primary px-4 py-2 rounded-full text-sm font-semibold shadow hover:shadow-md transition';
     btn.textContent = '📖 Lire l\'histoire complète';
     btn.onclick = (e) => { e.stopPropagation(); openModal(r); };
-    body.appendChild(btn);
+    btnRow.appendChild(btn);
+
+    const shareBtn = document.createElement('a');
+    shareBtn.className = 'text-sm px-3 py-2 rounded-full border font-semibold';
+    shareBtn.style.borderColor = 'rgba(10,42,94,.25)';
+    shareBtn.textContent = '📤';
+    shareBtn.setAttribute('aria-label', 'Partager cette région');
+    shareBtn.href = `https://wa.me/?text=${encodeURIComponent(`Découvre l'histoire de la région ${r.nom} (Tchad) sur Tchad Patrimoine : ${SITE_URL}`)}`;
+    shareBtn.target = '_blank';
+    shareBtn.onclick = (e) => e.stopPropagation();
+    btnRow.appendChild(shareBtn);
+
+    body.appendChild(btnRow);
 
     card.appendChild(body);
     grid.appendChild(card);
     card.addEventListener('click', () => openModal(r));
+  });
+
+  // ---------- RECHERCHE DE RÉGIONS ----------
+  const searchInput = document.getElementById('regionSearch');
+  const noResults = document.getElementById('noResults');
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+    document.querySelectorAll('.region-card').forEach(card => {
+      const name = card.getAttribute('data-region').toLowerCase();
+      const match = name.includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
+    });
+    noResults.classList.toggle('hidden', visibleCount !== 0);
+  });
+
+  // ---------- PARTAGE DU SITE ENTIER ----------
+  document.getElementById('shareSiteBtn').addEventListener('click', () => {
+    const text = `Découvre Tchad Patrimoine : l'histoire des 23 régions et des grands empires du Tchad ! ${SITE_URL}`;
+    if (navigator.share) {
+      navigator.share({ title: 'Tchad Patrimoine', text, url: SITE_URL }).catch(() => {});
+    } else {
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
   });
 
   // ---------- CARTE INTERACTIVE ----------
@@ -679,6 +764,7 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
       empiresTitle.textContent = 'الإمبراطوريات الكبرى ما قبل الاستعمار';
       document.getElementById('figuresTitle').textContent = 'شخصيات تاريخية';
       document.getElementById('mapTitle').textContent = 'خريطة تشاد التفاعلية';
+      document.getElementById('factsTitle').textContent = 'هل تعلم؟';
       document.querySelectorAll('.region-card h3').forEach((h3, idx) => {
         const d = regions[idx];
         if (d) h3.textContent = d.ar;
@@ -693,6 +779,7 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
       empiresTitle.textContent = 'Les grands empires précoloniaux';
       document.getElementById('figuresTitle').textContent = 'Personnalités historiques';
       document.getElementById('mapTitle').textContent = 'Carte interactive du Tchad';
+      document.getElementById('factsTitle').textContent = 'Le saviez-vous ?';
       document.querySelectorAll('.region-card h3').forEach((h3, idx) => {
         const d = regions[idx];
         if (d) h3.textContent = d.nom;
