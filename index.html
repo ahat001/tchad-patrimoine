@@ -320,18 +320,18 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
   <div class="grid md:grid-cols-3 gap-5">
     <div class="empire-card">
       <div class="text-xs font-bold" style="color:var(--gold);">IXᵉ SIÈCLE</div>
-      <h3 class="font-bold text-lg mt-1" style="font-family:'Fraunces',serif;">Empire du Kanem</h3>
-      <p class="text-sm text-soft mt-2">Fondé par la dynastie Saifawa, capitale Njimi. Son apogée sous Mai Dunama Dibalami étendit son influence jusqu'au Fezzan.</p>
+      <h3 id="empire1Title" class="font-bold text-lg mt-1" style="font-family:'Fraunces',serif;">Empire du Kanem</h3>
+      <p id="empire1Text" class="text-sm text-soft mt-2">Fondé par la dynastie Saifawa, capitale Njimi. Son apogée sous Mai Dunama Dibalami étendit son influence jusqu'au Fezzan.</p>
     </div>
     <div class="empire-card">
       <div class="text-xs font-bold" style="color:var(--gold);">1522</div>
-      <h3 class="font-bold text-lg mt-1" style="font-family:'Fraunces',serif;">Royaume du Baguirmi</h3>
-      <p class="text-sm text-soft mt-2">Fondé par Abdallah Birni Besse à Massenya, vassal du Kanem, prospère aux XVIIᵉ–XVIIIᵉ siècles avant de résister à Rabah.</p>
+      <h3 id="empire2Title" class="font-bold text-lg mt-1" style="font-family:'Fraunces',serif;">Royaume du Baguirmi</h3>
+      <p id="empire2Text" class="text-sm text-soft mt-2">Fondé par Abdallah Birni Besse à Massenya, vassal du Kanem, prospère aux XVIIᵉ–XVIIIᵉ siècles avant de résister à Rabah.</p>
     </div>
     <div class="empire-card">
       <div class="text-xs font-bold" style="color:var(--gold);">1635</div>
-      <h3 class="font-bold text-lg mt-1" style="font-family:'Fraunces',serif;">Sultanat du Ouaddaï</h3>
-      <p class="text-sm text-soft mt-2">Fondé par Abdelkerim Dilmé à Abéché, prospère grâce aux routes caravanières avant la résistance à la colonisation française.</p>
+      <h3 id="empire3Title" class="font-bold text-lg mt-1" style="font-family:'Fraunces',serif;">Sultanat du Ouaddaï</h3>
+      <p id="empire3Text" class="text-sm text-soft mt-2">Fondé par Abdelkerim Dilmé à Abéché, prospère grâce aux routes caravanières avant la résistance à la colonisation française.</p>
     </div>
   </div>
 </section>
@@ -343,21 +343,21 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
   <div class="grid md:grid-cols-3 gap-5">
     <div class="figure-card">
       <div class="figure-avatar">MD</div>
-      <h3 class="font-bold text-lg mt-3" style="font-family:'Fraunces',serif;">Mai Dunama Dibalami</h3>
-      <p class="text-xs font-semibold" style="color:var(--gold);">Empire du Kanem, 1210–1248</p>
-      <p class="text-sm text-soft mt-2">Souverain sous lequel l'empire du Kanem connut son apogée territoriale, étendant son influence jusqu'au Fezzan.</p>
+      <h3 id="figure1Name" class="font-bold text-lg mt-3" style="font-family:'Fraunces',serif;">Mai Dunama Dibalami</h3>
+      <p id="figure1Sub" class="text-xs font-semibold" style="color:var(--gold);">Empire du Kanem, 1210–1248</p>
+      <p id="figure1Text" class="text-sm text-soft mt-2">Souverain sous lequel l'empire du Kanem connut son apogée territoriale, étendant son influence jusqu'au Fezzan.</p>
     </div>
     <div class="figure-card">
       <div class="figure-avatar">AB</div>
-      <h3 class="font-bold text-lg mt-3" style="font-family:'Fraunces',serif;">Abdallah Birni Besse</h3>
-      <p class="text-xs font-semibold" style="color:var(--gold);">Fondateur du Baguirmi, 1522</p>
-      <p class="text-sm text-soft mt-2">Fonda le royaume du Baguirmi et sa capitale Massenya, qui prospéra pendant plusieurs siècles.</p>
+      <h3 id="figure2Name" class="font-bold text-lg mt-3" style="font-family:'Fraunces',serif;">Abdallah Birni Besse</h3>
+      <p id="figure2Sub" class="text-xs font-semibold" style="color:var(--gold);">Fondateur du Baguirmi, 1522</p>
+      <p id="figure2Text" class="text-sm text-soft mt-2">Fonda le royaume du Baguirmi et sa capitale Massenya, qui prospéra pendant plusieurs siècles.</p>
     </div>
     <div class="figure-card">
       <div class="figure-avatar">AD</div>
-      <h3 class="font-bold text-lg mt-3" style="font-family:'Fraunces',serif;">Abdelkerim Dilmé</h3>
-      <p class="text-xs font-semibold" style="color:var(--gold);">Fondateur du Ouaddaï, 1635</p>
-      <p class="text-sm text-soft mt-2">Fonda le sultanat du Ouaddaï autour d'Abéché, bâti sur la prospérité des routes caravanières.</p>
+      <h3 id="figure3Name" class="font-bold text-lg mt-3" style="font-family:'Fraunces',serif;">Abdelkerim Dilmé</h3>
+      <p id="figure3Sub" class="text-xs font-semibold" style="color:var(--gold);">Fondateur du Ouaddaï, 1635</p>
+      <p id="figure3Text" class="text-sm text-soft mt-2">Fonda le sultanat du Ouaddaï autour d'Abéché, bâti sur la prospérité des routes caravanières.</p>
     </div>
   </div>
   <p class="text-xs text-soft mt-6 italic">D'autres figures régionales existent pour chaque province — la liste s'enrichira au fil du temps.</p>
@@ -482,6 +482,7 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
 <script>
 (function() {
   const SITE_URL = 'https://tchad-patrimoine-235.vercel.app';
+  let currentLang = localStorage.getItem('tchadLang') || 'fr';
 
   // ---------- LE SAVIEZ-VOUS ----------
   const facts = [
@@ -491,6 +492,14 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
     "Le massif du Tibesti abrite l'Emi Koussi, un volcan qui est le point culminant du Tchad et du Sahara.",
     "Le Tchad compte plus de 200 langues et groupes ethniques différents, reflet d'une grande diversité culturelle.",
     "Le parc national de Zakouma, dans le sud-est, est réputé pour avoir permis le retour spectaculaire des populations d'éléphants grâce aux efforts de protection."
+  ];
+  const factsAr = [
+    "بحيرة تشاد، التي أعطت اسمها للبلاد، كانت تمتد قديمًا على مساحة أكبر بكثير مما هي عليه اليوم، وما زالت تتقلص منذ عقود.",
+    "تقع العاصمة انجامينا عند ملتقى نهري شاري ولوغون.",
+    "اكتُشف حفرية توماي، أحد أقدم أحافير أشباه البشر المعروفة (حوالي 7 ملايين سنة)، في صحراء جورب بتشاد.",
+    "يضم جبال تيبستي بركان إيمي كوسي، وهو أعلى قمة في تشاد وفي الصحراء الكبرى.",
+    "يضم تشاد أكثر من 200 لغة ومجموعة عرقية مختلفة، ما يعكس تنوعًا ثقافيًا كبيرًا.",
+    "تشتهر محمية زاكوما الوطنية، في الجنوب الشرقي، بعودة أعداد الفيلة بشكل لافت بفضل جهود الحماية."
   ];
 
   // ---------- DONNÉES RÉGIONS ----------
@@ -543,16 +552,44 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
     `;
   }
 
+  function getFullHistoryAr(r) {
+    const nomAr = r.ar, chef = r.chef;
+    let empire = "";
+    if (r.nom === "Kanem") {
+      empire = `<strong>إمبراطورية كانم</strong>: تأسست في القرن التاسع الميلادي على يد أسرة سايفاوا، وعاصمتها نجيمي. وسّع الماي دوناما داباليمي (1210-1248) نفوذ الإمبراطورية حتى إقليم فزان. بدأت الأسلمة في القرن الحادي عشر. انهارت الإمبراطورية حوالي عام 1380 بسبب الحروب والجفاف وهجمات البولالا. `;
+    } else if (r.nom === "Ouaddaï") {
+      empire = `<strong>سلطنة وداي</strong>: تأسست حوالي عام 1635 على يد عبد الكريم، وعاصمتها أبشة. ازدهرت بفضل تجارة الملح والقوافل، وقاومت ببسالة قبل سقوطها بيد الفرنسيين عام 1909. `;
+    } else if (r.nom === "Chari-Baguirmi") {
+      empire = `<strong>مملكة باقرمي</strong>: تأسست عام 1522 على يد برني بيسى، وعاصمتها ماسنيا. كانت تابعة لكانم، وبلغت أوجها في القرنين السابع عشر والثامن عشر، قبل أن تصبح محمية فرنسية عام 1897. `;
+    }
+    return `
+      <h3 class="text-2xl font-bold mb-3" style="color:var(--navy); font-family:'Amiri',serif;">${nomAr} (${r.nom}) — الحاضرة الإدارية: ${chef}</h3>
+      <p><strong>التأسيس والشعوب الأصلية:</strong> منطقة ${nomAr} مأهولة منذ زمن بعيد بمجتمعات زراعية-رعوية. كان السكان الأوائل من الصيادين وجامعي الثمار، ثم تنظمت مجموعات مستقرة في شكل مشيخات محلية.</p>
+      <p><strong>عصر الإمبراطوريات:</strong> ${empire}كانت هذه المنطقة ملتقى تجاريًا بين الساحل والغابة، إذ عبرتها طرق القوافل التي جلبت الازدهار والتنوع الثقافي.</p>
+      <p><strong>الحقبة الاستعمارية (1890-1960):</strong> أخضعت القوات الفرنسية المنطقة بعد معارك عنيفة. فرضت الإدارة الاستعمارية نظام المشيخات واستغلت الموارد المحلية (القطن، الصمغ العربي). اندلعت ثورات محلية، خاصة في ثلاثينيات القرن الماضي.</p>
+      <p><strong>الاستقلال عام 1960:</strong> نال تشاد سيادته، وأصبحت ${nomAr} منطقة إدارية. حاولت الحكومات التشادية الأولى إشراك النخب المحلية في الحكم.</p>
+      <p><strong>أحداث بارزة في القرن العشرين:</strong> ضربت موجات الجفاف في سبعينيات وثمانينيات القرن الماضي منطقة ${nomAr} بشدة، ما تسبب في نزوح السكان. كما تأثرت المنطقة بالحرب الأهلية (1965-1990).</p>
+      <p><strong>الإصلاحات واللامركزية (2000-2020):</strong> استفادت المنطقة من برامج التنمية وبناء البنى التحتية والمدارس. عززت اللامركزية السلطة المحلية.</p>
+      <p><strong>الوضع الحالي (2026):</strong> ${nomAr} منطقة نابضة بالحياة، اقتصادها قائم على الزراعة وتربية الماشية والتجارة عبر الحدود. التقاليد الثقافية لا تزال حية، والشباب ينخرطون في ريادة الأعمال.</p>
+    `;
+  }
+
   function getSummary(nom) {
     return `La région de ${nom} est un territoire clé du Tchad, riche en histoire et en diversité culturelle. Ses paysages et ses traditions en font une porte d'entrée vers le patrimoine tchadien.`;
   }
 
+  function getSummaryAr(nomAr) {
+    return `منطقة ${nomAr} هي إقليم رئيسي في تشاد، غني بالتاريخ والتنوع الثقافي. تشكل مناظرها الطبيعية وتقاليدها بوابة نحو التراث التشادي.`;
+  }
+
   // ---------- RENDU DES FAITS ----------
   const factsGrid = document.getElementById('factsGrid');
-  facts.forEach(f => {
+  facts.forEach((f, i) => {
     const card = document.createElement('div');
     card.className = 'fact-card';
-    card.textContent = f;
+    card.setAttribute('data-fr', f);
+    card.setAttribute('data-ar', factsAr[i]);
+    card.textContent = currentLang === 'ar' ? factsAr[i] : f;
     factsGrid.appendChild(card);
   });
 
@@ -595,8 +632,8 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
     body.appendChild(chefEl);
 
     const summary = document.createElement('p');
-    summary.className = 'text-sm text-gray-700 mb-4 leading-relaxed flex-grow';
-    summary.textContent = getSummary(r.nom);
+    summary.className = 'card-summary text-sm text-gray-700 mb-4 leading-relaxed flex-grow';
+    summary.textContent = currentLang === 'ar' ? getSummaryAr(r.ar) : getSummary(r.nom);
     body.appendChild(summary);
 
     const btnRow = document.createElement('div');
@@ -667,9 +704,12 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
     const optsHtml = options.map(opt =>
       `<button class="quiz-opt" data-correct="${opt === region.chef}" onclick="window.answerQuiz(this)">${opt}</button>`
     ).join('');
+    const question = currentLang === 'ar'
+      ? `🧠 اختبار صغير: ما هي الحاضرة الإدارية لمنطقة ${region.ar} ؟`
+      : `🧠 Petit quiz : quel est le chef-lieu de ${region.nom} ?`;
     return `
       <div class="quiz-box">
-        <p class="font-bold text-sm mb-3" style="color:var(--navy);">🧠 Petit quiz : quel est le chef-lieu de ${region.nom} ?</p>
+        <p class="font-bold text-sm mb-3" style="color:var(--navy);">${question}</p>
         <div id="quizOptions">${optsHtml}</div>
         <p id="quizFeedback" class="quiz-feedback"></p>
       </div>`;
@@ -681,11 +721,11 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
     container.querySelectorAll('.quiz-opt').forEach(o => o.disabled = true);
     if (correct) {
       btnEl.classList.add('correct');
-      feedback.textContent = '✅ Bonne réponse !';
+      feedback.textContent = currentLang === 'ar' ? '✅ إجابة صحيحة!' : '✅ Bonne réponse !';
       feedback.style.color = '#2E9E52';
     } else {
       btnEl.classList.add('wrong');
-      feedback.textContent = '❌ Pas tout à fait — la bonne réponse est surlignée.';
+      feedback.textContent = currentLang === 'ar' ? '❌ ليست صحيحة — الإجابة الصحيحة مظللة.' : '❌ Pas tout à fait — la bonne réponse est surlignée.';
       feedback.style.color = 'var(--red)';
       container.querySelectorAll('.quiz-opt').forEach(o => { if (o.getAttribute('data-correct') === 'true') o.classList.add('correct'); });
     }
@@ -696,7 +736,8 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
   const modalBody = document.getElementById('modalBody');
 
   function openModal(region) {
-    modalBody.innerHTML = getFullHistory(region) + getQuizHtml(region);
+    modalBody.innerHTML = (currentLang === 'ar' ? getFullHistoryAr(region) : getFullHistory(region)) + getQuizHtml(region);
+    modalBody.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
@@ -743,7 +784,6 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
   // ---------- LANGUE ----------
   const langToggle = document.getElementById('langToggle');
   const langLabel = document.getElementById('langLabel');
-  let currentLang = localStorage.getItem('tchadLang') || 'fr';
 
   function applyLang(lang) {
     currentLang = lang;
@@ -765,9 +805,35 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
       document.getElementById('figuresTitle').textContent = 'شخصيات تاريخية';
       document.getElementById('mapTitle').textContent = 'خريطة تشاد التفاعلية';
       document.getElementById('factsTitle').textContent = 'هل تعلم؟';
+      document.getElementById('empire1Title').textContent = 'إمبراطورية كانم';
+      document.getElementById('empire1Text').textContent = 'أسستها أسرة سايفاوا، وعاصمتها نجيمي. بلغت أوجها في عهد الماي دوناما داباليمي الذي وسّع نفوذها حتى فزان.';
+      document.getElementById('empire2Title').textContent = 'مملكة باقرمي';
+      document.getElementById('empire2Text').textContent = 'أسسها عبد الله برني بيسى في ماسنيا، وكانت تابعة لكانم، وازدهرت في القرنين السابع عشر والثامن عشر قبل مقاومة رابح.';
+      document.getElementById('empire3Title').textContent = 'سلطنة وداي';
+      document.getElementById('empire3Text').textContent = 'أسسها عبد الكريم دلمي في أبشة، وازدهرت بفضل طرق القوافل قبل مقاومة الاستعمار الفرنسي.';
+      document.getElementById('figure1Name').textContent = 'الماي دوناما داباليمي';
+      document.getElementById('figure1Sub').textContent = 'إمبراطورية كانم، 1210–1248';
+      document.getElementById('figure1Text').textContent = 'الحاكم الذي بلغت في عهده إمبراطورية كانم أوجها الإقليمي، ووسّع نفوذها حتى فزان.';
+      document.getElementById('figure2Name').textContent = 'عبد الله برني بيسى';
+      document.getElementById('figure2Sub').textContent = 'مؤسس مملكة باقرمي، 1522';
+      document.getElementById('figure2Text').textContent = 'أسس مملكة باقرمي وعاصمتها ماسنيا، التي ازدهرت لعدة قرون.';
+      document.getElementById('figure3Name').textContent = 'عبد الكريم دلمي';
+      document.getElementById('figure3Sub').textContent = 'مؤسس سلطنة وداي، 1635';
+      document.getElementById('figure3Text').textContent = 'أسس سلطنة وداي حول أبشة، التي ازدهرت بفضل طرق القوافل.';
+      document.querySelectorAll('.fact-card').forEach(el => { el.textContent = el.getAttribute('data-ar'); });
+      document.getElementById('regionSearch').placeholder = '🔍 ابحث عن منطقة...';
+      document.getElementById('noResults').textContent = 'لا توجد منطقة مطابقة لبحثك.';
       document.querySelectorAll('.region-card h3').forEach((h3, idx) => {
         const d = regions[idx];
         if (d) h3.textContent = d.ar;
+      });
+      document.querySelectorAll('.region-card .chef').forEach((el, idx) => {
+        const d = regions[idx];
+        if (d) el.textContent = `الحاضرة الإدارية: ${d.chef}`;
+      });
+      document.querySelectorAll('.region-card .card-summary').forEach((el, idx) => {
+        const d = regions[idx];
+        if (d) el.textContent = getSummaryAr(d.ar);
       });
     } else {
       document.documentElement.classList.add('lang-fr');
@@ -780,9 +846,35 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
       document.getElementById('figuresTitle').textContent = 'Personnalités historiques';
       document.getElementById('mapTitle').textContent = 'Carte interactive du Tchad';
       document.getElementById('factsTitle').textContent = 'Le saviez-vous ?';
+      document.getElementById('empire1Title').textContent = 'Empire du Kanem';
+      document.getElementById('empire1Text').textContent = 'Fondé par la dynastie Saifawa, capitale Njimi. Son apogée sous Mai Dunama Dibalami étendit son influence jusqu\'au Fezzan.';
+      document.getElementById('empire2Title').textContent = 'Royaume du Baguirmi';
+      document.getElementById('empire2Text').textContent = 'Fondé par Abdallah Birni Besse à Massenya, vassal du Kanem, prospère aux XVIIᵉ–XVIIIᵉ siècles avant de résister à Rabah.';
+      document.getElementById('empire3Title').textContent = 'Sultanat du Ouaddaï';
+      document.getElementById('empire3Text').textContent = 'Fondé par Abdelkerim Dilmé à Abéché, prospère grâce aux routes caravanières avant la résistance à la colonisation française.';
+      document.getElementById('figure1Name').textContent = 'Mai Dunama Dibalami';
+      document.getElementById('figure1Sub').textContent = 'Empire du Kanem, 1210–1248';
+      document.getElementById('figure1Text').textContent = 'Souverain sous lequel l\'empire du Kanem connut son apogée territoriale, étendant son influence jusqu\'au Fezzan.';
+      document.getElementById('figure2Name').textContent = 'Abdallah Birni Besse';
+      document.getElementById('figure2Sub').textContent = 'Fondateur du Baguirmi, 1522';
+      document.getElementById('figure2Text').textContent = 'Fonda le royaume du Baguirmi et sa capitale Massenya, qui prospéra pendant plusieurs siècles.';
+      document.getElementById('figure3Name').textContent = 'Abdelkerim Dilmé';
+      document.getElementById('figure3Sub').textContent = 'Fondateur du Ouaddaï, 1635';
+      document.getElementById('figure3Text').textContent = 'Fonda le sultanat du Ouaddaï autour d\'Abéché, bâti sur la prospérité des routes caravanières.';
+      document.querySelectorAll('.fact-card').forEach(el => { el.textContent = el.getAttribute('data-fr'); });
+      document.getElementById('regionSearch').placeholder = '🔍 Rechercher une région...';
+      document.getElementById('noResults').textContent = 'Aucune région ne correspond à ta recherche.';
       document.querySelectorAll('.region-card h3').forEach((h3, idx) => {
         const d = regions[idx];
         if (d) h3.textContent = d.nom;
+      });
+      document.querySelectorAll('.region-card .chef').forEach((el, idx) => {
+        const d = regions[idx];
+        if (d) el.textContent = `Chef-lieu : ${d.chef}`;
+      });
+      document.querySelectorAll('.region-card .card-summary').forEach((el, idx) => {
+        const d = regions[idx];
+        if (d) el.textContent = getSummary(d.nom);
       });
     }
   }
