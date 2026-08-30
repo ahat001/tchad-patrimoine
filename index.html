@@ -157,6 +157,15 @@ header{
 .figure-card{background:#fff; border:1px solid rgba(10,42,94,.10); border-radius:1rem; padding:1.4rem;}
 .dark .figure-card{background:#0D1B36; border-color:#1C2C4E;}
 
+/* ---------- CHRONOLOGIE ---------- */
+.timeline{position:relative; padding-left:2rem;}
+.timeline::before{content:""; position:absolute; left:.4rem; top:.4rem; bottom:.4rem; width:2px; background:linear-gradient(var(--gold), var(--navy));}
+.timeline-item{position:relative; margin-bottom:1.6rem;}
+.timeline-dot{position:absolute; left:-2rem; top:.2rem; width:.9rem; height:.9rem; border-radius:50%; background:var(--navy); border:2px solid var(--gold);}
+.timeline-date{font-weight:800; font-size:.78rem; letter-spacing:.05em; color:var(--red); text-transform:uppercase;}
+.timeline-text{font-size:.92rem; color:var(--ink-soft); margin-top:.2rem;}
+.dark .timeline-text{color:#B9C2D6;}
+
 /* ---------- FAITS "LE SAVIEZ-VOUS" ---------- */
 .fact-card{
   background:#fff; border:1px solid rgba(10,42,94,.10); border-radius:.9rem;
@@ -229,6 +238,21 @@ header{
   position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
   font-family:'Fraunces',serif; font-size:3rem; color:rgba(242,169,0,.85);
 }
+.fav-star{
+  position:absolute; top:.5rem; right:.5rem; width:2rem; height:2rem; border-radius:50%;
+  background:rgba(5,14,34,.55); color:#fff; font-size:1.1rem; line-height:2rem; text-align:center;
+  backdrop-filter:blur(3px); transition:transform .15s, color .15s;
+}
+.fav-star:hover{transform:scale(1.1);}
+.fav-star.active{color:var(--gold-bright);}
+
+/* ---------- BOUTON AUDIO ---------- */
+.btn-audio{
+  font-size:.8rem; font-weight:700; color:#fff; background:var(--navy);
+  padding:.4rem .9rem; border-radius:999px; transition:background-color .2s;
+}
+.btn-audio:hover{background:var(--navy-deep);}
+.dark .btn-audio{background:var(--gold); color:#1C1B19;}
 .btn-primary{background:var(--navy); color:#fff; transition:background-color .2s;}
 .btn-primary:hover{background:var(--navy-deep);}
 .dark .btn-primary{background:var(--gold); color:#1C1B19;}
@@ -266,6 +290,8 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
       <button id="langToggle" class="btn-outline text-sm px-3 py-1.5 rounded-lg font-semibold" style="border-color:var(--navy); color:var(--navy);">
         <span id="langLabel">FR</span>
       </button>
+      <button id="quizScoreBtn" class="text-xs font-bold px-2.5 py-1.5 rounded-full" style="background:var(--gold); color:var(--navy);" title="Score du quiz">🧠 0/23</button>
+      <button id="favFilterBtn" class="text-xl leading-none p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition" aria-label="Voir mes favoris">☆</button>
       <button id="shareSiteBtn" class="text-xl leading-none p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition" aria-label="Partager le site">📤</button>
       <button id="themeToggle" class="text-xl leading-none p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition">🌙</button>
     </div>
@@ -360,7 +386,71 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
       <p id="figure3Text" class="text-sm text-soft mt-2">Fonda le sultanat du Ouaddaï autour d'Abéché, bâti sur la prospérité des routes caravanières.</p>
     </div>
   </div>
-  <p class="text-xs text-soft mt-6 italic">D'autres figures régionales existent pour chaque province — la liste s'enrichira au fil du temps.</p>
+  <p class="text-xs text-soft mt-6 italic" id="figuresNote">D'autres figures régionales existent pour chaque province — la liste s'enrichira au fil du temps.</p>
+</section>
+
+<!-- CHRONOLOGIE -->
+<section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+  <p class="eyebrow text-center" style="color:var(--red);">D'hier à aujourd'hui</p>
+  <h2 id="timelineTitle" class="text-2xl md:text-3xl font-bold mb-10 text-center" style="color:var(--navy);">Chronologie du Tchad</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">IXᵉ siècle</div>
+        <p id="tl1" class="timeline-text">Fondation de l'empire du Kanem par la dynastie Saifawa.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">1522</div>
+        <p id="tl2" class="timeline-text">Fondation du royaume du Baguirmi à Massenya.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">1635</div>
+        <p id="tl3" class="timeline-text">Fondation du sultanat du Ouaddaï autour d'Abéché.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">1900</div>
+        <p id="tl4" class="timeline-text">Début de la conquête coloniale française du territoire tchadien.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">11 août 1960</div>
+        <p id="tl5" class="timeline-text">Indépendance de la République du Tchad.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">1965–1990</div>
+        <p id="tl6" class="timeline-text">Période de guerre civile marquant profondément le pays.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">2000–2020</div>
+        <p id="tl7" class="timeline-text">Réformes administratives et décentralisation, création progressive des 23 régions actuelles.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:var(--red);"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">Aujourd'hui</div>
+        <p id="tl8" class="timeline-text">Un pays riche de sa diversité, qui continue à écrire son histoire.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- VIDEO -->
@@ -483,6 +573,37 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
 (function() {
   const SITE_URL = 'https://tchad-patrimoine-235.vercel.app';
   let currentLang = localStorage.getItem('tchadLang') || 'fr';
+
+  // ---------- FAVORIS (stockés sur l'appareil) ----------
+  function getFavorites() {
+    try { return JSON.parse(localStorage.getItem('tchadFavorites') || '[]'); }
+    catch(e) { return []; }
+  }
+  function toggleFavorite(nom) {
+    let favs = getFavorites();
+    if (favs.includes(nom)) favs = favs.filter(f => f !== nom);
+    else favs.push(nom);
+    localStorage.setItem('tchadFavorites', JSON.stringify(favs));
+  }
+  let showingFavoritesOnly = false;
+
+  // ---------- SCORE DU QUIZ (stocké sur l'appareil) ----------
+  function getQuizProgress() {
+    try { return JSON.parse(localStorage.getItem('tchadQuizProgress') || '{}'); }
+    catch(e) { return {}; }
+  }
+  function recordQuizAnswer(regionId, correct) {
+    const progress = getQuizProgress();
+    progress[regionId] = correct;
+    localStorage.setItem('tchadQuizProgress', JSON.stringify(progress));
+    updateQuizScoreDisplay();
+  }
+  function updateQuizScoreDisplay() {
+    const progress = getQuizProgress();
+    const correctCount = Object.values(progress).filter(v => v === true).length;
+    const btn = document.getElementById('quizScoreBtn');
+    if (btn) btn.textContent = `🧠 ${correctCount}/23`;
+  }
 
   // ---------- LE SAVIEZ-VOUS ----------
   const facts = [
@@ -616,6 +737,19 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
       thumb.appendChild(fb);
     };
     thumb.appendChild(img);
+    const favBtn = document.createElement('button');
+    favBtn.className = 'fav-star';
+    favBtn.setAttribute('aria-label', 'Ajouter aux favoris');
+    favBtn.textContent = getFavorites().includes(r.nom) ? '★' : '☆';
+    if (getFavorites().includes(r.nom)) favBtn.classList.add('active');
+    favBtn.onclick = (e) => {
+      e.stopPropagation();
+      toggleFavorite(r.nom);
+      const isFav = getFavorites().includes(r.nom);
+      favBtn.textContent = isFav ? '★' : '☆';
+      favBtn.classList.toggle('active', isFav);
+    };
+    thumb.appendChild(favBtn);
     card.appendChild(thumb);
 
     const body = document.createElement('div');
@@ -697,7 +831,9 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
   });
 
   // ---------- QUIZ ----------
+  let currentQuizRegionId = null;
   function getQuizHtml(region) {
+    currentQuizRegionId = region.id;
     const others = regions.filter(x => x.id !== region.id);
     const shuffled = others.sort(() => Math.random() - .5).slice(0, 2).map(x => x.chef);
     const options = [region.chef, ...shuffled].sort(() => Math.random() - .5);
@@ -719,6 +855,7 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
     const feedback = document.getElementById('quizFeedback');
     const correct = btnEl.getAttribute('data-correct') === 'true';
     container.querySelectorAll('.quiz-opt').forEach(o => o.disabled = true);
+    if (currentQuizRegionId !== null) recordQuizAnswer(currentQuizRegionId, correct);
     if (correct) {
       btnEl.classList.add('correct');
       feedback.textContent = currentLang === 'ar' ? '✅ إجابة صحيحة!' : '✅ Bonne réponse !';
@@ -735,8 +872,36 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
   const modal = document.getElementById('modal');
   const modalBody = document.getElementById('modalBody');
 
+  // ---------- LECTURE AUDIO (synthèse vocale du navigateur) ----------
+  function stripHtml(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+  window.speakRegion = function(text, lang) {
+    if (!('speechSynthesis' in window)) {
+      alert(currentLang === 'ar' ? 'القراءة الصوتية غير مدعومة على هذا الجهاز.' : "La lecture audio n'est pas prise en charge sur cet appareil.");
+      return;
+    }
+    speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(stripHtml(text));
+    utter.lang = lang === 'ar' ? 'ar-SA' : 'fr-FR';
+    utter.rate = 0.95;
+    speechSynthesis.speak(utter);
+  };
+  window.stopSpeaking = function() {
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+  };
+
   function openModal(region) {
-    modalBody.innerHTML = (currentLang === 'ar' ? getFullHistoryAr(region) : getFullHistory(region)) + getQuizHtml(region);
+    const historyHtml = currentLang === 'ar' ? getFullHistoryAr(region) : getFullHistory(region);
+    const audioLabel = currentLang === 'ar' ? '🔊 استمع' : '🔊 Écouter';
+    const stopLabel = currentLang === 'ar' ? '⏹ إيقاف' : '⏹ Arrêter';
+    const audioBar = `<div class="flex gap-2 mb-4">
+        <button class="btn-audio" onclick="window.speakRegion(document.getElementById('modalHistoryText').innerHTML, '${currentLang}')">${audioLabel}</button>
+        <button class="btn-audio" onclick="window.stopSpeaking()">${stopLabel}</button>
+      </div>`;
+    modalBody.innerHTML = audioBar + `<div id="modalHistoryText">${historyHtml}</div>` + getQuizHtml(region);
     modalBody.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
     modal.classList.remove('hidden');
     modal.classList.add('flex');
@@ -747,6 +912,7 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
     modal.classList.add('hidden');
     modal.classList.remove('flex');
     document.body.style.overflow = '';
+    window.stopSpeaking();
   };
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
@@ -805,6 +971,15 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
       document.getElementById('figuresTitle').textContent = 'شخصيات تاريخية';
       document.getElementById('mapTitle').textContent = 'خريطة تشاد التفاعلية';
       document.getElementById('factsTitle').textContent = 'هل تعلم؟';
+      document.getElementById('timelineTitle').textContent = 'الخط الزمني لتشاد';
+      document.getElementById('tl1').textContent = 'تأسيس إمبراطورية كانم على يد أسرة سايفاوا.';
+      document.getElementById('tl2').textContent = 'تأسيس مملكة باقرمي في ماسنيا.';
+      document.getElementById('tl3').textContent = 'تأسيس سلطنة وداي حول أبشة.';
+      document.getElementById('tl4').textContent = 'بداية الغزو الاستعماري الفرنسي للأراضي التشادية.';
+      document.getElementById('tl5').textContent = 'استقلال جمهورية تشاد.';
+      document.getElementById('tl6').textContent = 'فترة حرب أهلية تركت أثرًا عميقًا في البلاد.';
+      document.getElementById('tl7').textContent = 'إصلاحات إدارية ولامركزية، وإنشاء تدريجي للمناطق الـ23 الحالية.';
+      document.getElementById('tl8').textContent = 'بلد غني بتنوعه، يواصل كتابة تاريخه.';
       document.getElementById('empire1Title').textContent = 'إمبراطورية كانم';
       document.getElementById('empire1Text').textContent = 'أسستها أسرة سايفاوا، وعاصمتها نجيمي. بلغت أوجها في عهد الماي دوناما داباليمي الذي وسّع نفوذها حتى فزان.';
       document.getElementById('empire2Title').textContent = 'مملكة باقرمي';
@@ -846,6 +1021,15 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
       document.getElementById('figuresTitle').textContent = 'Personnalités historiques';
       document.getElementById('mapTitle').textContent = 'Carte interactive du Tchad';
       document.getElementById('factsTitle').textContent = 'Le saviez-vous ?';
+      document.getElementById('timelineTitle').textContent = 'Chronologie du Tchad';
+      document.getElementById('tl1').textContent = "Fondation de l'empire du Kanem par la dynastie Saifawa.";
+      document.getElementById('tl2').textContent = 'Fondation du royaume du Baguirmi à Massenya.';
+      document.getElementById('tl3').textContent = "Fondation du sultanat du Ouaddaï autour d'Abéché.";
+      document.getElementById('tl4').textContent = 'Début de la conquête coloniale française du territoire tchadien.';
+      document.getElementById('tl5').textContent = 'Indépendance de la République du Tchad.';
+      document.getElementById('tl6').textContent = 'Période de guerre civile marquant profondément le pays.';
+      document.getElementById('tl7').textContent = 'Réformes administratives et décentralisation, création progressive des 23 régions actuelles.';
+      document.getElementById('tl8').textContent = "Un pays riche de sa diversité, qui continue à écrire son histoire.";
       document.getElementById('empire1Title').textContent = 'Empire du Kanem';
       document.getElementById('empire1Text').textContent = 'Fondé par la dynastie Saifawa, capitale Njimi. Son apogée sous Mai Dunama Dibalami étendit son influence jusqu\'au Fezzan.';
       document.getElementById('empire2Title').textContent = 'Royaume du Baguirmi';
@@ -891,6 +1075,21 @@ a:focus-visible, button:focus-visible{outline:3px solid var(--gold); outline-off
     themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
   }
   themeToggle.addEventListener('click', () => applyTheme(currentTheme === 'light' ? 'dark' : 'light'));
+
+  // ---------- FILTRE FAVORIS ----------
+  const favFilterBtn = document.getElementById('favFilterBtn');
+  favFilterBtn.addEventListener('click', () => {
+    showingFavoritesOnly = !showingFavoritesOnly;
+    favFilterBtn.textContent = showingFavoritesOnly ? '★' : '☆';
+    const favs = getFavorites();
+    document.querySelectorAll('.region-card').forEach(card => {
+      const name = card.getAttribute('data-region');
+      card.style.display = (!showingFavoritesOnly || favs.includes(name)) ? '' : 'none';
+    });
+    if (showingFavoritesOnly) searchInput.value = '';
+  });
+
+  updateQuizScoreDisplay();
 
   applyTheme(currentTheme);
   applyLang(currentLang);
